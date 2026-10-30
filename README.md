@@ -56,7 +56,7 @@ bash /tmp/kit/setup.sh
 ## GitHub에 접속할 수 없을 때
 붙여넣기가 막혀 직접 쳐야 하면 짧은 버전을 쓴다.
 
-> AGENTS.md 뒤에 규칙 추가: 단계 하나씩 하고 멈춰서 4줄 보고, 실행 결과로만 완료 판단, 같은 오류 2번이면 멈추고 선택지 줘, 결정은 docs/decisions/에 기록. docs/에 PRD·PLANS·RISKS 빈 양식 만들어.
+> AGENTS.md 뒤에 규칙 추가: 단계 하나씩 하고 멈춰서 4줄 보고, 실행 결과로만 완료 판단, 같은 오류 2번이면 멈추고 선택지 줘, 결정은 docs/decisions/에 기록, 단계 끝나면 로컬 커밋(push 금지). docs/에 PRD·PLANS·RISKS 빈 양식 만들어.
 
 붙여넣기가 되면 Codex에 아래를 그대로 입력한다.
 

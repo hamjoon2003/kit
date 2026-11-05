@@ -28,7 +28,7 @@ note() { NOTE="$NOTE
 # 1. 문서 양식
 mkdir -p "$ROOT/docs/decisions" "$ROOT/docs/handoffs" || fail "docs/ 폴더 만들기"
 skipped=""
-for f in PRD.md PLANS.md RISKS.md HANDOFF.md; do
+for f in PRD.md PLANS.md RISKS.md HANDOFF.md PROMPTS.md; do
   if [ -e "$ROOT/docs/$f" ]; then skipped="$skipped $f"
   else cp "$KIT/templates/$f" "$ROOT/docs/$f" || fail "docs/$f 복사"; fi
 done
@@ -153,13 +153,13 @@ for s in $SP_SKILLS $AK_SKILLS; do
   else missing="$missing $s"; fi
 done
 docs_ok=1
-for f in AGENTS.md docs/PRD.md docs/PLANS.md docs/RISKS.md docs/HANDOFF.md; do [ -s "$ROOT/$f" ] || docs_ok=0; done
+for f in AGENTS.md docs/PRD.md docs/PLANS.md docs/RISKS.md docs/HANDOFF.md docs/PROMPTS.md; do [ -s "$ROOT/$f" ] || docs_ok=0; done
 
 echo
 echo "스킬 설치 위치: $DEST"
 [ -n "$NOTE" ] && echo "확인할 것:$NOTE"
 if [ -z "$FAIL" ] && [ -z "$missing" ] && [ "$docs_ok" = 1 ]; then
-  echo "완료: 스킬 $ok/5, AGENTS.md, docs/ 양식. Codex를 다시 시작한 뒤 /skills 로 확인하세요."
+  echo "완료: 스킬 $ok/5, AGENTS.md, docs/ 양식. Codex를 다시 시작한 뒤 /skills 로 확인하세요. 붙여 넣을 문장: docs/PROMPTS.md"
   exit 0
 fi
 [ -n "$FAIL" ] && echo "실패:$FAIL"

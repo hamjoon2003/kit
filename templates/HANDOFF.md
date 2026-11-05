@@ -21,8 +21,8 @@
 | | | | |
 
 ## 주요 결정
-- docs/decisions/ 참고. 핵심만: 
+- docs/PLANS.md Decision Log 참고. 핵심만: 
 
 ## 알려진 한계와 다음 단계
-- docs/RISKS.md의 "남긴 채로 제출하는 위험" 참고.
+- docs/PLANS.md "위험"의 "남긴 채 제출" 참고.
 - 

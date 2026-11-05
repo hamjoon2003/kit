@@ -8,8 +8,8 @@
 | `AGENTS.md` | Codex 작업 규칙: 단계별 진행, 증거로 완료 보고, 데이터 과제 규칙, 토큰·세션 인계 |
 | `templates/PRD.md` | 요구사항과 담당자 인터뷰 질문 틀 |
 | `templates/PLANS.md` | 실행 계획(OpenAI ExecPlan 축약), 요구사항별 검증표, 멈춤 기준 |
-| `templates/RISKS.md` | 사전 부검 방식 위험 목록 |
-| `templates/decisions/0000-template.md` | 결정 기록(MADR 축약) |
+| `templates/RISKS.md` | 사전 부검 방식 위험 목록 (선택. 기본은 PLANS에 적음) |
+| `templates/decisions/0000-template.md` | 결정 기록(MADR 축약, 선택. 기본은 PLANS에 적음) |
 | `templates/HANDOFF.md` | 최종 인계 문서 |
 | `setup.sh` | 위 파일을 과제에 복사하고 공개 스킬 5개를 고정 버전으로 설치 |
 
@@ -47,20 +47,20 @@ bash /tmp/kit/setup.sh
 원문을 고쳐 쓰지 않는다. 적용 범위는 `AGENTS.md`로 정한다. 설치 때 바꾸는 것은 새로 설치한 스킬에서만 네 가지다: 디버깅 스킬의 개발용 부속 파일 제외와 그 파일을 부르던 안내를 수동 절차로 교체, 스킬 이름 접두사(`superpowers:`) 제거, 데이터 스킬의 커넥터 안내 줄 제거, TDD 자동 호출 끄기. 이미 있던 스킬은 건드리지 않는다.
 
 ## 진행 순서
-1. 과제를 읽고 `docs/PRD.md`를 채운다. 빈칸만 담당자에게 묻는다.
+1. Codex가 과제와 담당자 답으로 `docs/PRD.md` 초안을 쓴다. 범위·우선순위·방법은 내가 정한다. 담당자 질문은 한 메시지에 하나씩 보낸다.
 2. `docs/PLANS.md`에 단계를 쪼개고, 검증표에 요구사항별 기대 결과를 먼저 적는다.
 3. Codex에 한 단계씩 맡긴다. 예: "PLANS.md 2단계 진행해. 끝나면 검증표 갱신하고 멈춰."
-4. 결정은 `docs/decisions/`, 새 위험은 `docs/RISKS.md`에 남긴다.
+4. 결정·가정·위험은 `docs/PLANS.md` 한 곳에 남긴다.
 5. 끝나기 15분 전 `docs/HANDOFF.md`를 쓰고 제출한다.
 
 ## GitHub에 접속할 수 없을 때
 붙여넣기가 막혀 직접 쳐야 하면 짧은 버전을 쓴다.
 
-> AGENTS.md 뒤에 규칙 추가: 단계 하나씩 하고 멈춰서 4줄 보고, 실행 결과로만 완료 판단, 같은 오류 2번이면 멈추고 선택지 줘, 결정은 docs/decisions/에 기록, 단계 끝나면 로컬 커밋(push 금지). docs/에 PRD·PLANS·RISKS 빈 양식 만들어.
+> AGENTS.md 뒤에 규칙 추가: 단계 하나씩 하고 멈춰서 4줄 보고, 실행 결과로만 완료 판단, 같은 오류 2번이면 멈추고 선택지 줘, 결정·가정·위험은 docs/PLANS.md에 기록, 단계 끝나면 로컬 커밋(push 금지). docs/에 PRD·PLANS 빈 양식 만들어.
 
 붙여넣기가 되면 Codex에 아래를 그대로 입력한다.
 
-> 먼저 프로젝트 루트의 AGENTS.md와 docs/ 파일이 있는지 확인해. 있으면 지우거나 덮어쓰지 말고 AGENTS.md 뒤에 덧붙이고, 기존 규칙과 충돌하면 기존 규칙을 따라. 덧붙일 규칙: PLANS.md 단계를 하나씩만 하고 멈춰서 4줄로 보고, 실행한 명령과 결과(통과/실패/미실행)로만 완료 판단, 확정된 계산은 손으로 확인 가능한 예시 테스트 먼저, 화면 확인은 내가 하니 확인 절차만 제시, 데이터는 누수·시간 순서·기준선부터 확인, 결정은 docs/decisions/, 위험은 docs/RISKS.md에 기록, 키·비밀번호를 파일에 쓰지 않고 외부로 보내는 명령(git push 포함)은 실행하지 않음. 그리고 docs/에 없는 파일만 PRD.md(목표·사용자·범위·데이터·틀렸을 때 비용·완료 기준), PLANS.md(단계·Progress·Decision Log·요구사항별 검증표), RISKS.md(약점·파급 범위·조기 신호·검증)를 빈 양식으로 만들어.
+> 먼저 프로젝트 루트의 AGENTS.md와 docs/ 파일이 있는지 확인해. 있으면 지우거나 덮어쓰지 말고 AGENTS.md 뒤에 덧붙이고, 기존 규칙과 충돌하면 기존 규칙을 따라. 덧붙일 규칙: PLANS.md 단계를 하나씩만 하고 멈춰서 4줄로 보고, 실행한 명령과 결과(통과/실패/미실행)로만 완료 판단, 확정된 계산은 손으로 확인 가능한 예시 테스트 먼저, 화면 확인은 내가 하니 확인 절차만 제시, 데이터는 누수·시간 순서·기준선부터 확인, 결정·가정·위험은 docs/PLANS.md에 기록, 키·비밀번호를 파일에 쓰지 않고 외부로 보내는 명령(git push 포함)은 실행하지 않음. 그리고 docs/에 없는 파일만 PRD.md(목표·사용자·범위·데이터·틀렸을 때 비용·완료 기준), PLANS.md(단계·Progress·Decision Log·가정·위험·요구사항별 검증표)를 빈 양식으로 만들어.
 
 ## 출처와 라이선스
 - 스킬은 이 저장소에 포함하지 않고 `setup.sh`가 원본 [obra/superpowers](https://github.com/obra/superpowers)(MIT)와 [anthropics/knowledge-work-plugins](https://github.com/anthropics/knowledge-work-plugins)(Apache-2.0)에서 고정 커밋으로 내려받는다. 각 라이선스 파일도 함께 복사한다.
